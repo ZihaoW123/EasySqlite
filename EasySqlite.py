@@ -12,7 +12,9 @@ class EasySqlite(object):
             else:
                 paths = [os.path.join(db_path, 'easysqlite_data_%03d_%03d.db' % (i, partition_num)) for i in range(partition_num)]
         else: 
-            dir_name, file_name = os.path.dirname(db_path), os.path.basename(db_path).split('.')[0] #db_path.split('.')[0]
+            dir_name, basename = os.path.dirname(db_path), os.path.basename(db_path)  #db_path.split('.')[0]
+            file_name, ext = basename.split('.')
+            assert ext == 'db'
             os.makedirs(dir_name, exist_ok=True)
             if partition_num==1:
                 paths = [db_path]
