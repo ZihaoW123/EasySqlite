@@ -143,6 +143,14 @@ class EasySqlite(object):
         else:
             for cursor in self.cursor_list: cursor.close()
     
+    def close(self, partition=None):
+        if partition: 
+            self.cursor_list[partition].close()
+            self.conn_list[partition].close()
+        else:
+            for cursor in self.cursor_list: cursor.close()
+            for conn in self.conn_list: conn.close()
+    
 
 
             
