@@ -26,7 +26,7 @@ class EasySqlite(object):
         self.conn_list = [sqlite3.connect(tmp) for tmp in paths]
         self.cursor_list = [conn.cursor() for conn in self.conn_list]
         self.intervals, self.total_length = [], 0
-        self.table_name = 'data'
+        self.table_name = 'easysqlite_data'
         self.put_sql = f'insert into {self.table_name} (data) values (?)'
         self.get_sql = f'select data from {self.table_name} where rowid=?'
 
